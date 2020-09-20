@@ -38,16 +38,73 @@ Date: 9/20/20
     </table>
     <h3>2) Colspan and percentage width</h3>
     <table width = 150px height = 150px border="2px gray separate">
-        <tr width= "100%">
-            <td width="100%">1</td>
+        <tr>
+            <td colspan = "3" width="100%">1</td>
         </tr>
         <tr>
-            <td width = "75%">2</td>
-            <td width = "25%">3</td>
+            <td colspan="2" width="66%">2</td>
+            <td width="33%">3</td>
         </tr>
         <tr>
-            <td width="25%">4</td>
-            <td width="75%">5</td>
+            <td width="33%">4</td>
+            <td colspan = 3 width="75%">5</td>
+        </tr>
+    </table>
+    <h3>3) Rowspan</h3>
+    <table width="150px" height="150px" border="2px gray separate">
+        <tr>
+            <td>1</td>
+            <td rowspan="2">4</td>
+            <td rowspan="3">6</td>
+        </tr>
+        <tr>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>5</td>
+        </tr>
+    </table>
+    <h3>4) Colspan and rowspan</h3>
+    <table width="150px" height="150px" border="2px gray separate">
+        <tr>
+            <td colspan="2">1</td>
+            <td rowspan="2">2</td>
+        </tr>
+        <tr>
+            <td rowspan="2">4</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td colspan="2">3</td>
+        </tr>
+    </table>
+    <h3>5) Nested Table</h3>
+    <table width="350px" height ="300px" bgcolor="yellow" border="1px black">
+        <tr height = "25%">
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr height = "25%">
+            <td rowspan = "2" colspan="3" width="100%">
+                <table height = "100%" width = "100%" bgcolor="beige" border="1px black">
+                <tr>
+                    <td width = "50%" height = "50%" style="text-align: center;">A <br> nested <br>table</td>
+                    <td style="vertical-align: top;">With this text at the top</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height = "25%"></tr>
+        <tr height = "25%">
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
     </table>
 </body>
