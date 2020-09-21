@@ -18,9 +18,26 @@ Date: 9/20/20
     Abstract: Homework 7
 
     <form name="frmContactUs" method="get" action="">
-        <caption>Send us an email</caption>
-        <label>Subject:*</label>
-        
+        <table border= "1px black" style="border-collapse: collapse;">
+            <tr>
+                <td colspan="2">Send us an email</td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="cboSubject">Subject:*</label>
+                </td>
+                <td>
+                    <select type="text" name="cboSubject" list="value"/>
+                    <datalist>
+                        <option>General Question</option>
+                        <option>Order Followup</option>
+                        <option>Sales</option>
+                        <option>Other</option>
+                    </datalist>
+                </td>
+            </tr>
+        </table>
+
         
     </form>
 </body>
