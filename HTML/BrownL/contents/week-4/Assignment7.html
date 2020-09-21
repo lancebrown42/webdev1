@@ -65,7 +65,7 @@ Date: 9/20/20
                     <label for="txtPhone">Phone Number:</label>
                 </td>
                 <td>
-                    <input type="text" name="txtPhone">
+                    <input type="tel" name="txtPhone">
                 </td>
             </tr>
             <tr>
@@ -223,6 +223,39 @@ Date: 9/20/20
                 </td>
                 <td>
                     <input type="email" name="txtEmail">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="dtmBirthday">Date of Birth:*</label>
+                </td>
+                <td>
+                    <input type="date" name="dtmBirthday" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="txtSSN">Social Security Number:*</label>
+                </td>
+                <td>
+                    <input type="password" name="txtSSN" placeholder="###-##-####" maxlength="9" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="txtSalary">Salary:*</label>
+                </td>
+                <td>
+                    $<input type="number" name="txtSalary" step="0.01" placeholder="##,###.##" maxlength="9" required>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><hr></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center;">
+                    <input type="submit" name="submit">
+                    <input type="reset" name="clear" value="Clear">
                 </td>
             </tr>
         </table>
