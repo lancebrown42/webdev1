@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>My Template</title>
+    <title>Forms</title>
     <!--
 Name: Lance Brown
 Class:  IT-117-400
@@ -15,10 +15,10 @@ Date: 9/20/20
 <body>
     Name: Lance Brown <br>
     Class: IT-117-400 <br>
-    Abstract: Homework 7
-
+    Abstract: Homework 7<br><br>
+    <h3>1) Contact Us Form</h3>
     <form name="frmContactUs" method="get" action="">
-        <table border= "1px black" style="border-collapse: collapse;">
+        <table border= "1px black" style=";">
             <tr>
                 <td colspan="2">Send us an email</td>
             </tr>
@@ -27,8 +27,8 @@ Date: 9/20/20
                     <label for="cboSubject">Subject:*</label>
                 </td>
                 <td>
-                    <select type="text" name="cboSubject" list="value"/>
-                    <datalist>
+                    <select type="text" name="cboSubject" list="dlSubject" required/>
+                    <datalist id="dlSubject">
                         <option>General Question</option>
                         <option>Order Followup</option>
                         <option>Sales</option>
@@ -36,9 +36,164 @@ Date: 9/20/20
                     </datalist>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <label for="txtName">Your Name:*</label>
+                </td>
+                <td>
+                    <input type="text" name="txtName" required />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="txtTitle">Title</label>
+                </td>
+                <td>
+                    <input type="text" name="txtTitle"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="txtCompany">Company:</label>
+                </td>
+                <td>
+                    <input type="text" name="txtCompany">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="txtPhone">Phone Number:</label>
+                </td>
+                <td>
+                    <input type="text" name="txtPhone">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="txtEmail">Email Address</label>
+                </td>
+                <td>
+                    <input type="text" name="txtEmail">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label for="txtMessage">Message</label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" rowspan="4">
+                    <textarea name="txtMessage" id="txtMessage" maxlength="500" cols="30" rows="10">
+                        
+                    </textarea> 
+                </td>
+            </tr>
+            <tr></tr>
+            <tr></tr>
+            <tr></tr>
+            <tr>
+                <td colspan="2" style="text-align: right;">* Required Field</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center;">
+                    <input type="submit" name="submit">
+                    <input type="reset" name="clear" value="Clear">
+                </td>
+            </tr>
         </table>
 
         
+    </form>
+    <h3>2) Checkboxes, radio buttons, combobox and listbox</h3>
+    <form name="frmMisc" method="get" action="">
+        <table border="1px black">
+            <tr>
+                <td colspan="2">Miscellaneous</td>
+            </tr>
+            <tr>
+                <td width="20%">
+                    <label for="chkToppings">Toppings:</label>
+                </td>
+                <td>
+                    <input type="checkbox" name="chkToppings" value="caramel">Caramel<br>
+                    <input type="checkbox" name="chkToppings" value="fudge">Hot Fudge<br>
+                    <input type="checkbox" name="chkToppings" value="sprinkles">Sprinkles
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><hr></td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="rdoFlavor">Flavor:*</label>
+                </td>
+                <td>
+                    <input type="radio" name="rdoFlavor" value="chocolate" required>Chocolate<br>
+                    <input type="radio" name="rdoFlavor" value="strawberry"required>Strawberry<br>
+                    <input type="radio" name="rdoFlavor" value="vanilla" required>Vanilla<br>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><hr></td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="cboColor1">Color 1:</label>
+                </td>
+                <td>
+                    <select name="cboColor1" required>
+                        <option value="red">Red</option>
+                        <option value="green">Green</option>
+                        <option value="blue">Blue</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><hr></td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="lstColors2">Color 2:</label>
+                </td>
+                <td>
+                    <select name="lstColors2" id="lstColors2" size="5" required>
+                        <optgroup label="Primary Colors">
+                            <option value="red">Red</option>
+                            <option value="green">Green</option>
+                            <option value="blue">Blue</option>
+                        </optgroup>
+                        <optgroup label="Secondary Colors">
+                            <option value="yellow">Yellow</option>
+                            <option value="magenta">Magenta</option>
+                            <option value="cyan">Cyan</option>
+                        </optgroup>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><hr></td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="clrColor3">Color 3:</label>
+                </td>
+                <td>
+                    <input type="color" name="clrColor3" required>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><hr></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: right">*Required Field</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center;">
+                    <input type="submit" name="submit">
+                    <input type="reset" name="reset" value="Clear">
+                </td>
+            </tr>
+        </table>
     </form>
 </body>
 
