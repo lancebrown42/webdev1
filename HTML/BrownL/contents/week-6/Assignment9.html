@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Template</title>
+    <!--
+Name: Lance Brown
+Class:  IT-117-400
+Abstract: Homework 9
+Date: 10/01/20
+
+-->
+</head>
+
+<body>
+    Name: Lance Brown <br>
+    Class: IT-117-400 <br>
+    Abstract: Homework ##
+    <hr>
+    <form method="post" action="survey.php">
+    	<table>
+    		<tr>
+    			<td>
+    				<label for="dtmDate">Survey Date: </label>
+    			</td>
+    			<td>
+    				<input type="datepicker" name="dtmDate">
+    			</td>
+    		</tr>
+    		<tr>
+    			<td>
+    				<label for="cboCountyState">County and State: </label>
+    			</td>
+    			<td>
+    				<select name="cboCountyState">
+    					<option value="Hamilton, OH">Hamilton, OH</option>
+    					<option value="Butler, OH">Butler, OH</option>
+    					<option value="Boone, KY">Boone, KY</option>
+    					<option value="Kenton, KY">Kenton, KY</option>
+    					
+    				</select>
+    			</td>
+    		</tr>
+    		<tr>
+    			<td>
+    				<label for="numHouseholdMembers">Number of Household Members: </label>
+    			</td>
+    			<td>
+    				<input type="number" name="numHouseholdMembers" min="1" max="99">
+    			</td>
+    		</tr>
+    		<tr>
+    			<td>
+    				<label for="numIncome">Household Annual Income: </label>
+    			</td>
+    			<td>
+    				<input type="number" name="numIncome">
+    			</td>
+    		</tr>
+    	</table>
+    </form>
+</body>
+</html>
