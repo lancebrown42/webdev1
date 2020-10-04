@@ -1,0 +1,65 @@
+Problem Statement
+
+You are to create a project for a census bureau to obtain and analyze household income survey data within the Cincinnati area (including Northern Ky).  
+
+Data Collected: 
+
+Date of the survey – required (use datepicker), must be a valid date 
+County and State (1 input only)  they reside in - required
+Hamilton, Oh
+Butler, Oh
+Boone, Ky
+Kenton, Ky
+Number in Household – required, must be numeric, must be greater than 0
+The household yearly income – required, must be numeric, must be greater than 0.
+
+Events:
+
+	There should be the following navigation on the screen: 
+
+Submit:  
+This event will validate all data and save the data to the necessary arrays for processing. 
+Reset:   
+Will reset all fields for the next set of inputs. 
+Total Households Surveyed: 
+This event will process the arrays and display the total households surveyed by state and then by county via HTML (see below for example).
+Average Household Income: 
+This event will process the arrays and display the average household income by state and then by county via HTML (see below for example).
+Percentage Below Poverty: 
+This event will process the arrays and display the Percentage Below Poverty for each state and their counties via HTML.  Poverty is based on the table below. 
+HOME: 
+This will take you back to the input screen for future input of census data. 
+
+
+
+
+
+Instructions: 
+
+Use good naming conventions on all controls, variables, etc. 
+Note:  To complete this project you will string manipulation techniques to separate the county and state.  You will also use a session variable to keep track of your amount of entries in your array.  And you will use session arrays to hold all of the data entered. 
+All survey data from form must be saved to parallel arrays (county, state, household number, and household income) a total of 4) upon submission of each census.  No calculations should be done until the following buttons are clicks. 
+When the user clicks the button “Total Households Surveyed”, do the necessary array processing and display in HTML the Total Households Surveyed by State and by county for all that were surveyed (see below for example).
+When the user clicks the button “Average Household Income”, do the necessary array processing and display in HTML the Average Household Income by State and by county for all that were surveyed (see below for example).
+When the user clicks the button “Percentage Below Poverty”, do the necessary array processing and display in HTML the Percentage Below Poverty by State and by county for all that were surveyed (see below for example).
+
+
+
+
+Average Household Income
+
+Ohio:   	$30,000
+   Hamilton:  	$40,000
+   Butler:  	$20,000
+Kentucky:	$35,000
+   Boone:	$40,000
+   Kenton:	$35,000
+
+
+Basis of Poverty: 
+
+Household of 1 and less than $12,000
+Household of 2 and less than $18,000
+Household of 3 and less than $25,000
+Household of 4 and less than $30,000
+Household of 5 or more and less than $40,000
