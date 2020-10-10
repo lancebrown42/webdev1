@@ -1,7 +1,13 @@
 <!DOCTYPE html>
-<?php session_start();
-    $arrSurveyInfo = array();
-    $_SESSION['arrSurveyInfo'] = $arrSurveyInfo;
+<?php 
+    session_start();
+    if (!isset($_SESSION['arrCounty'])) {
+        $_SESSION['arrCounty'] = array();
+        $_SESSION['arrState'] = array();
+        $_SESSION['arrIncome'] = array();
+        $_SESSION['arrHousehold'] = array();
+        
+    }
 ?>
 <html>
 
@@ -21,8 +27,7 @@ Date: 10/01/20
     Class: IT-117-400 <br>
     Abstract: Homework 9
     <hr>
-    <?php echo "PHP";?>
-    <form method="post">
+    <form method="post" name="frmSurvey">
     	<table>
     		<tr>
     			<td>
@@ -38,10 +43,10 @@ Date: 10/01/20
     			</td>
     			<td>
     				<select name="cboCountyState" id="cboCountyState" required>
-    					<option value="Hamilton, OH">Hamilton, OH</option>
-    					<option value="Butler, OH">Butler, OH</option>
-    					<option value="Boone, KY">Boone, KY</option>
-    					<option value="Kenton, KY">Kenton, KY</option>
+    					<option value="Hamilton, Ohio">Hamilton, OH</option>
+    					<option value="Butler, Ohio">Butler, OH</option>
+    					<option value="Boone, Kentucky">Boone, KY</option>
+    					<option value="Kenton, Kentucky">Kenton, KY</option>
     					
     				</select>
     			</td>
@@ -71,14 +76,24 @@ Date: 10/01/20
             <tr id="CalcNav">
                 <td colspan="2">
                     
-                    <input type="submit" name="btnTotal" value="Total Households Surveyed" id="btnTotal">
-                    <input type="submit" name="btnAverage" value="Average Household Income" id="btnAverage">
-                    <input type="submit" name="btnPercent" id="btnPercent" value="Percentage Below Poverty">
+                    <input type="submit" name="btnTotal" value="Total Households Surveyed" id="btnTotal" formnovalidate>
+                    <input type="submit" name="btnAverage" value="Average Household Income" id="btnAverage" formnovalidate>
+                    <input type="submit" name="btnPercent" id="btnPercent" value="Percentage Below Poverty" formnovalidate>
                 </td>
             </tr>
     	</table>
     </form>
-
-
+    <h3>Test Area</h3>
+    <hr>
+    <?php 
+    // foreach($_SESSION['arrHousehold'] as $value){
+    //     echo "$value <br>";
+    // }
+    // foreach($_SESSION['arrCounty'] as $county){
+    //     echo "$county <br>";
+    // }
+    ?>
+    <!-- <?php echo $_SESSION['arrHousehold'][0];?> -->
+<?php include "survey.php"; ?>
 </body>
 </html>
