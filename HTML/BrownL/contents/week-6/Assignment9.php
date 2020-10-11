@@ -12,7 +12,7 @@
 <html>
 
 <head>
-    <title>My Template</title>
+    <title>Income Survey</title>
     <!--
 Name: Lance Brown
 Class:  IT-117-400
@@ -81,19 +81,15 @@ Date: 10/01/20
                     <input type="submit" name="btnPercent" id="btnPercent" value="Percentage Below Poverty" formnovalidate>
                 </td>
             </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    
+                    <input type="submit" name="btnEnd" value="Delete Survey Data" title="Clear Session" onclick="return confirm('This will restart the session and clear all saved data. Are you sure?')" formnovalidate>
+                </td>
+            </tr>
     	</table>
     </form>
-    <h3>Test Area</h3>
-    <hr>
-    <?php 
-    // foreach($_SESSION['arrHousehold'] as $value){
-    //     echo "$value <br>";
-    // }
-    // foreach($_SESSION['arrCounty'] as $county){
-    //     echo "$county <br>";
-    // }
-    ?>
-    <!-- <?php echo $_SESSION['arrHousehold'][0];?> -->
+
 <?php include "survey.php"; ?>
 </body>
 </html>
