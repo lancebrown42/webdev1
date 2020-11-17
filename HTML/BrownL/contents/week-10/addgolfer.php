@@ -5,37 +5,37 @@
         <!--
         Name: Lance Brown
         Class:  IT-117-400
-        Abstract: Homework 11
+        Abstract: Homework 12
         Date: 10/20/20
         -->
+        <meta charset="utf-8">
     </head>
     <body>
-        Name: Lance Brown <br>
-        Class: IT-117-400 <br>
-        Abstract: Homework 11
-        <hr>
-        <?php
-            // ini_set('display_errors', 0);
-            // ini_set('display_startup_errors', 0);
-            // error_reporting(0);
+<?php
+            ini_set('display_errors', 1);
+            ini_set('display_startup_errors', 1);
+            error_reporting(E_ALL);
             //Connect to MySQL
-            $servername = "itd1.cincinnatistate.edu";
+            $servername = "mc-itddb-12-e-1";
             $username = "lbrown11";
             $password = "0671312";
             $dbname = "WAPP1BrownL";
-            
-            //Create connection
-            $conn = mysqli_connect($servername, $username, $password, $dbname);
+
+            // Create connection
+            $conn = new mysqli($servername, $username, $password, $dbname);
+            // Check connection
+            if ($conn->connect_error) {
+              die("Connection failed: " . $conn->connect_error);
+            }
+            // $conn = mysqli_connect($servername, $username, $password, $dbname);
             
             //Check connection
-            if (!$conn) {
-                die("Connection failed: " . mysqli_connect_error());
-            }
-
-            $states = $mysqli->query("SELECT intStateID, strState FROM TStates");
-            $genders = $mysqli->query("SELECT intGenderID, strGenderDesc FROM TGenders");
-            $shirtsize = $mysqli->query("SELECT intShirtSize, strShirtSizeDesc FROM TShirtSizes");
-            mysqli_close($conn);
+            
+            
+            $states = $conn->query("SELECT intStateID, strState FROM TStates");
+            $genders = $conn->query("SELECT intGenderID, strGenderDesc FROM TGenders");
+            $shirtsize = $conn->query("SELECT intShirtSizeID, strShirtSizeDesc FROM TShirtSizes");
+            
         ?>
         <form action="process_golfer.php" method="post">
             <table>
@@ -110,16 +110,16 @@
                     </td>
                     <td>
                         <select name="txtShirtSize" required>
-                            <option hidden disabled selected value> -- Select a shirt size -- </option>
+                            <option hidden disabled selected value> -- Select a Shirt Size -- </option>
                             <?php
                                 while($rows = $shirtsize->fetch_assoc()){
-                                    $shirtsize = $rows['strShirtSizeDesc'];
+                                    $shirtsize_name = $rows['strShirtSizeDesc'];
                                     $shirtsize_key = $rows['intShirtSizeID'];
-                                    echo"<option value='$shirtsize_key'>$shirtsize</option>";
+                                    echo"<option value='$shirtsize_key'>$shirtsize_name</option>";
                                 }
                                 ?>
                         </select>
-                    </td>
+                        
                 </tr>
                 <tr>
                     <td>
@@ -140,11 +140,13 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <input type="submit" name="submit">
+                        <input type="submit" name="submit" value="Add Golfer">
                         <input type="reset" name="clear" value="Clear">
                     </td>
                 </tr>
             </table>
         </form>
-    </body>
+        <a href="showgolfers.php"><button>Show Golfers</button></a>
+        <?php $conn->close();?>
+            </body>
 </html>

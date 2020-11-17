@@ -1,14 +1,14 @@
+<!DOCTYPE html>
 <html>
+<head>
+	<title>Golfer Details</title>
+	<meta charset="utf-8">
+</head>
 <body>
-<table border=1>
-	<tr>
-		<td><a href="Assignment11.php">Add a new Golfer</a></td>
-</table>
-
-<br>
+	
 <?php
 	//Connect to MySQL
-	$servername = "itd1.cincinnatistate.edu";
+	$servername = "mc-itddb-12-e-1";
 	$username = "lbrown11";
 	$password = "0671312";
 	$dbname = "WAPP1BrownL";
@@ -22,36 +22,8 @@
 	}
 
 	//example variables and posts from a form
-	$txtName =  $_POST["txtName"];
-	$txtAddress =  $_POST["txtAddress"];
-	$txtCity = $_POST["txtCity"];
-	$intState = $_POST["txtState"];
-	$txtZip = $_POST["txtZip"];
-	$txtPhone = $_POST["txtPhone"];
-	$txtEmail = $_POST["txtEmail"];
-	$intShirtSize = $_POST["txtShirtSize"];
-	$intGender = $_POST["txtGender"];
-	
 
-	$strFirstName = explode(' ', $txtName)[0];
-	$strLastName = explode(' ', $txtName)[1];
-	
-	
-	//Insert information to database
-	$insertGolfer = "INSERT INTO Customers (strFirstName, strLastName, strStreetAddress, strCity, intStateID, strZip, strPhoneNumber, strEmail, intShirtSizeID, intGenderID)
-	VALUES ('$txtFirstName', '$txtLastName', '$txtAddress', '$txtCity', '$intStateID', '$txtZip', '$txtPhone', '$txtEmail', '$intShirtSize', '$intGender')";
-	
-	//Confirm record insertions
-	if (mysqli_query($conn, $insertGolfer)) {
-		echo "";
-	} else {
-		echo "Error: " . $insertGolfer . "<br>" . mysqli_error($conn);
-	}
-	
-	
-	
-	
-	//Display all custs
+//Display all golfers
 	$sql = "SELECT * FROM TGolfers JOIN TStates on TGolfers.intStateID = TStates.intStateID JOIN TGenders on TGolfers.intGenderID = TGenders.intGenderID JOIN TShirtSizes on TGolfers.intShirtSizeID = TShirtSizes.intShirtSizeID";
 	if($result = mysqli_query($conn, $sql)){
 		if(mysqli_num_rows($result) > 0){
@@ -71,16 +43,18 @@
             echo "</tr>";
         while($row = mysqli_fetch_array($result)){
             echo "<tr>";
+            	echo "<td><a href='updateplayer.php?ID=" . $row['intGolferID'] . "'>". $row['intGolferID'] . "</td>";
                 echo "<td>" . $row['strFirstName'] . "</td>";
                 echo "<td>" . $row['strLastName'] . "</td>";
                 echo "<td>" . $row['strStreetAddress'] . "</td>";
 				echo "<td>" . $row['strCity'] . "</td>";
 				echo "<td>" . $row['strState'] . "</td>";
 				echo "<td>" . $row['strZip'] . "</td>";
-				echo "<td>" . $row['strPhone'] . "</td>";
+				echo "<td>" . $row['strPhoneNumber'] . "</td>";
 				echo "<td>" . $row['strEmail'] . "</td>";
 				echo "<td>" . $row['strShirtSizeDesc'] . "</td>";
 				echo "<td>" . $row['strGenderDesc'] . "</td>";
+				echo "<td><a href='donate.php?ID=" . $row['intGolferID'] . "'><button>Donate now</button></a></td>";
             echo "</tr>";
         }
         echo "</table>";
@@ -93,9 +67,8 @@
 } else{
     echo "ERROR: $sql. " . mysqli_error($conn);
 }
- 
-// Close connection
-mysqli_close($conn);
-?>
+    ?>
+    <a href="Assignment12.php"><button>Go Back</button></a>
 </body>
 </html>
+
