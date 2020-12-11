@@ -13,13 +13,15 @@
     <body>
         Name: Lance Brown <br>
         Class: IT-117-400 <br>
-        Abstract: Homework 12
+        Abstract: Final Portfolio
         <hr>
-        <a href="addgolfer.php"><button>Add Golfer</button></a>
-        <a href="showgolfers.php"><button>Show Golfers</button></a>
-        <a href="donate.php"><button>Donate Now</button></a>
-        <a href="golferstats.php"><button>Golfer Statistics</button></a>
-        <a href="teamstats.php"><button>Team Statistics</button></a>
+        <nav>
+            <a href="addgolfer.php"><button>Add Golfer</button></a>
+            <a href="showgolfers.php"><button>Show Golfers</button></a>
+            <a href="donate.php"><button>Donate Now</button></a>
+            <a href="golferstats.php"><button>Golfer Statistics</button></a>
+            <a href="teamstats.php"><button>Team Statistics</button></a>
+        </nav>
         <?php
             ini_set('display_errors', 1);
             ini_set('display_startup_errors', 1);
@@ -40,12 +42,18 @@
             
             //Check connection
             
+            $event = (($conn->query("SELECT intEventYearID, intEventYear FROM TEventYears"))->fetch_assoc());
             
             $states = $conn->query("SELECT intStateID, strState FROM TStates");
             $genders = $conn->query("SELECT intGenderID, strGenderDesc FROM TGenders");
             $shirtsize = $conn->query("SELECT intShirtSizeID, strShirtSizeDesc FROM TShirtSizes");
             
         ?>
-        
+        <h2>Event Info</h2>
+        <h3>Year: <?php echo "$event['intEventYear']"?></h3>
+        <h4>Total raised: </h4>
+        <h4>Top Donations Team:</h4>
+        <h4>Total golfers:</h4>
+        <h4>Latest Donors:</h4>
     </body>
 </html>
