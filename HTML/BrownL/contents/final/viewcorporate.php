@@ -23,37 +23,50 @@
 	//example variables and posts from a form
 
 //Display all golfers
-	$sql = "SELECT TS.strFirstName as strSponsorFirst, TS.strLastName as strSponsorLast, TG.strFirstName as strGolferFirst, TG.strLastName as strGolferLast, TEGS.monPledgeAmount as monDonation FROM TSponsors as TS JOIN TEventGolferSponsors as TEGS on TS.intSponsorID = TEGS.intSponsorID JOIN TEventGolfers as TEG on TEGS.intEventGolferID = TEG.intEventGolferID JOIN TGolfers as TG on TEG.intGolferID = TG.intGolferID WHERE TEG.intGolferID =" . $_GET['ID'];
-	$golfer = mysqli_query($conn, "SELECT strFirstName, strLastName FROM TGolfers WHERE intGolferID = " . $_GET['ID'])->fetch_assoc();
+	$sql = "SELECT TCS.strCompanyName as strCompany, TECST.monTypeCost as monTypeCost, TCST.strTypeDescription as strType FROM TCorporateSponsors as TCS JOIN TEventCorporateSponsorshipTypeCorporateSponsors as TECSTCS on TCS.intCorporateSponsorID = TECSTCS.intCorporateSponsorID JOIN TEventCorporateSponsorshipTypes as TECST on TECSTCS.intEventCorporateSponsorshipTypeID = TECST.intEventCorporateSponsorshipTypeID JOIN TCorporateSponsorshipTypes as TCST on TECST.intCorporateSponsorshipTypeID = TCST.intCorporateSponsorshipTypeID";
+	$result = $conn->query($sql);
+	if($result){?>
 
-	if($result = mysqli_query($conn, $sql)){
-		if(mysqli_num_rows($result) > 0){
-			echo "<table class='table'>";
-			echo "<th>Sponsors for ". $golfer['strFirstName'] . " " . $golfer['strLastName'] . "</th>";
-				echo "<tr>";
-				echo "<th>First Name</th>";
-				echo "<th>Last Name</th>";
-				echo "<th>Donation</th>";
-            echo "</tr>";
-        while($row = mysqli_fetch_array($result)){
-            echo "<tr class='content'>";
-                echo "<td>" . $row['strSponsorFirst'] . "</td>";
-                echo "<td>" . $row['strSponsorLast'] . "</td>";
-                echo "<td>$" . $row['monDonation'] . "</td>";
-            echo "</tr>";
-        }
-        echo "</table>";
-		
-        // Free result set
-        mysqli_free_result($result);
-    } else{
-        echo "No records matching your query were found.";
-    }
-} else{
-    echo "ERROR: $sql. " . mysqli_error($conn);
-}
-    ?>
-    <a href="golferstats.php"><button class="button">Go Back</button></a>
+	<div class="has-text-centered">
+                <p class="hero title is-success">Available Sponsorships</p>
+            <div class="section">
+            	<div class="columns is-centered">
+            		<div class="column is-half">
+                <table class="table">
+                	<thead>
+                		<th>Company</th>
+                		<th>Type of Sponsorship</th>
+                		<th>Cost</th>
+                	</thead>
+                	<tbody>
+                		<?php while($row = $result->fetch_assoc()){
+                			echo "<tr>";
+                			echo "<td>".$row['strCompany']."</td>";
+                			echo "<td>".$row['strType']."</td>";
+                			echo "<td>$".$row['monTypeCost']."</td>";
+
+                			echo "</tr>";
+                			
+
+                	}?>
+                	</tbody>
+                </table>
+                </div>
+            </div>
+            <div class="columns is-centered">
+            	<div class="column is-half">
+                <a href="addcorporate.php" class="button is-success">Add another</a>
+            </div>
+        </div>
+        </div>
+        </div>
+
+	
+    <a href="CorporateSponsorMain.php"><button class="button">Go Back</button></a>
 </div>
+<?php }else{
+	echo "Error: " . $result . "<br>" . mysqli_error($conn);
+}
+?>
 </body>
 </html>

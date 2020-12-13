@@ -23,10 +23,8 @@
                 
                 $states = $conn->query("SELECT intStateID, strState FROM TStates");
                 $genders = $conn->query("SELECT intGenderID, strGenderDesc FROM TGenders");
-                $shirtsize = $conn->query("SELECT intShirtSizeID, strShirtSizeDesc FROM TShirtSizes");
-                $teams = $conn->query("SELECT intTypeOfTeamID, strTypeOfTeamDesc FROM TTypeofTeams");
                 $sponsorshiptype = $conn->query("SELECT * from vAvailableCorporateSponsorships");
-                $paymenttype = $conn->query("SELECT * FROM TPaymentTypes");
+
         
             
         ?>
@@ -117,7 +115,7 @@
                             <?php
                                 while($rows = $sponsorshiptype->fetch_assoc()){
                                     $type_name = $rows['strType'] . " - $" . $rows["monTypeCost"];
-                                    $type_key = $rows['intEventSponsorshipTypeID'];
+                                    $type_key = $rows['intEventSponsorTypeID'];
                                     echo"<option value='$type_key'>$type_name</option>";
                                 }
                                 ?>
