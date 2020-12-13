@@ -1,17 +1,19 @@
 <html>
+<head>
+	<link rel="stylesheet" type="text/css" href="../../../../css/bulma/css/bulma.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
 <body>
+        <?php require "navbar.php"; ?>
 <table border=1>
 	<tr>
-		<td><a href="Assignment12.php">Add a new Golfer</a></td>
+		<td><a href="Final.php">Home</a></td>
 </table>
 
 <br>
 <?php
 	//Connect to MySQL
-	$servername = "mc-itddb-12-e-1";
-	$username = "lbrown11";
-	$password = "0671312";
-	$dbname = "WAPP1BrownL";
+	require "server.php";
 	
 	//Create connection
 	$conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -30,6 +32,7 @@
 	$txtPhone = $_POST["txtPhone"];
 	$txtEmail = $_POST["txtEmail"];
 	$intShirtSize = $_POST["txtShirtSize"];
+	$intTeamID = $_POST["txtTeam"];
 	$intGender = $_POST["txtGender"];
 	
 
@@ -40,9 +43,10 @@
 	
 	//Insert information to database
 	$insertGolfer = "UPDATE TGolfers SET strFirstName = '".$strFirstName."', strLastName = '".$strLastName."', strStreetAddress = '".$txtAddress."', strCity = '".$txtCity."', intStateID = ".$intState.", strZip = '".$txtZip."', strPhoneNumber = '".$txtPhone."', strEmail = '".$txtEmail."', intShirtSizeID = ".$intShirtSize.", intGenderID = ".$intGender." WHERE intGolferID = ".$_GET['ID'];
+	$updateTeam = "UPDATE TEventGolferTeamAndClubs INNER JOIN TeventGolfers on TEventGolferTeamAndClubs.intEventGolferID = TeventGolfers.intEventGolferID INNER JOIN TGolfers on TeventGolfers.intGolferID = TGolfers.intGolferID SET TEventGolferTeamandClubs.intTeamandClubID = " . $intTeamID . " WHERE TGolfers.intGolferID = " . $_GET['ID'];
 	
 	//Confirm record insertions
-	if (mysqli_query($conn, $insertGolfer)) {
+	if (mysqli_query($conn, $insertGolfer) && mysqli_query($conn, $updateTeam)) {
 		echo "Updated ". $strFirstName . " " . $strLastName . " in the roster.";
 		header("Location: showgolfers.php");
 	} else {

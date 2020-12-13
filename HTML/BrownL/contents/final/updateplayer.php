@@ -3,17 +3,17 @@
 <head>
 	<title>Update Golfer</title>
 	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../../../../css/bulma/css/bulma.css">
 </head>
 <body>
+        <?php require "navbar.php"; ?>
 	 <?php
             ini_set('display_errors', 1);
             ini_set('display_startup_errors', 1);
             error_reporting(E_ALL);
             //Connect to MySQL
-            $servername = "mc-itddb-12-e-1";
-            $username = "lbrown11";
-            $password = "0671312";
-            $dbname = "WAPP1BrownL";
+            require "server.php";
 
             // Create connection
             $conn = new mysqli($servername, $username, $password, $dbname);
@@ -34,6 +34,7 @@
                 $txtPhone = $golfer["strPhoneNumber"];
                 $txtEmail = $golfer["strEmail"];
                 $intShirtSize = $golfer["intShirtSizeID"];
+                $team = $conn->query("SELECT TEGT.intTeamandClubID, TEG.intEventGolferID, TG.intGolferID FROM TEventGolferTeamandCLubs as TEGT JOIN TEventGolfers as TEG on TEGT.intEventGolferID = TEG.intEventGolferID JOIN TGolfers as TG on TEG.intGolferID = TG.intGolferID WHERE TG.intGolferID =" . $_GET['ID'])->fetch_assoc()['intTeamandClubID'];
                 $intGender = $golfer["intGenderID"];
                 $strFirstName = explode(' ', $txtName)[0];
                 $strLastName = explode(' ', $txtName)[1];
@@ -41,6 +42,7 @@
                 $states = $conn->query("SELECT intStateID, strState FROM TStates");
                 $genders = $conn->query("SELECT intGenderID, strGenderDesc FROM TGenders");
                 $shirtsize = $conn->query("SELECT intShirtSizeID, strShirtSizeDesc FROM TShirtSizes");
+                $teams = $conn->query("SELECT TT.strTypeOfTeamDesc, TTC.intTeamandClubID, TG.strGenderDesc, TLT.strLeveldesc FROM TTypeofTeams as TT JOIN TTeamandCLubs as TTC on TT.intTypeOfTeamID = TTC.intTypeOfTeamID JOIN TLevelofTeams as TLT on TTC.intLevelofTeamID = TLT.intLevelofTeamID JOIN TGenders as TG on TTC.intGenderID = TG.intGenderID");
         }
             
         ?>
@@ -133,6 +135,29 @@
                                     }
                                     else{
                                         echo"<option value='$shirtsize_key'>$shirtsize_name</option>";
+                                     }
+                                    
+                                }
+                                ?>
+                        </select>
+                        
+                </tr>
+                <tr>
+                    <td>
+                        <label for="txtTeam">Team:</label>
+                    </td>
+                    <td>
+                        <select name="txtTeam" required>
+                            <option hidden disabled selected value> -- Select a Team -- </option>
+                            <?php
+                                while($rows = $teams->fetch_assoc()){
+                                    $team_name = $rows['strGenderDesc'] . " " . $rows['strLeveldesc'] . " " . $rows['strTypeOfTeamDesc'];
+                                    $team_key = $rows['intTeamandClubID'];
+                                    if ($team_key == $team){
+                                        echo "<option value='$team_key' selected>$team_name</option>";
+                                    }
+                                    else{
+                                        echo"<option value='$team_key'>$team_name</option>";
                                      }
                                     
                                 }

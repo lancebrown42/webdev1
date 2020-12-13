@@ -1,17 +1,23 @@
 <html>
+<head>
+	<link rel="stylesheet" type="text/css" href="../../../../css/bulma/css/bulma.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
 <body>
+        <?php require "navbar.php"; ?>
 <table border=1>
 	<tr>
-		<td><a href="Assignment12.php">Add a new Golfer</a></td>
+		<td><a href="addgolfer.php">Add a new Golfer</a></td>
+	</tr>
+	<tr>
+		<td><a href="Final.php">Home</a></td>
+	</tr>
 </table>
 
 <br>
 <?php
 	//Connect to MySQL
-	$servername = "mc-itddb-12-e-1";
-	$username = "lbrown11";
-	$password = "0671312";
-	$dbname = "WAPP1BrownL";
+	require "server.php";
 	
 	//Create connection
 	$conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -30,6 +36,7 @@
 	$txtPhone = $_POST["txtPhone"];
 	$txtEmail = $_POST["txtEmail"];
 	$intShirtSize = $_POST["txtShirtSize"];
+	$intTeamandClubID = $_POST["txtTeam"];
 	$intGender = $_POST["txtGender"];
 	
 
@@ -39,12 +46,24 @@
 	
 	
 	//Insert information to database
-	$insertGolfer = "INSERT INTO TGolfers (strFirstName, strLastName, strStreetAddress, strCity, intStateID, strZip, strPhoneNumber, strEmail, intShirtSizeID, intGenderID)
-	VALUES ('$strFirstName', '$strLastName', '$txtAddress', '$txtCity', $intState, '$txtZip', '$txtPhone', '$txtEmail', $intShirtSize, $intGender)";
+	$insertGolfer = "CALL uspAddGolferEvent('$strFirstName', '$strLastName', '$txtAddress', '$txtCity', $intState, '$txtZip', '$txtPhone', '$txtEmail', $intShirtSize, $intTeamandClubID, $intGender, @inintGolferID, @inintEventGolferID, @inintEventGolferTeamandClubID)";
+	// $insertGolfer = "INSERT INTO TGolfers (strFirstName, strLastName, strAddress, strCity, intStateID, strZip, strPhoneNumber, strEmail, intShirtSizeID, intGenderID)
+	// VALUES ('$strFirstName', '$strLastName', '$txtAddress', '$txtCity', $intState, '$txtZip', '$txtPhone', '$txtEmail', $intShirtSize, $intGender)";
 	
 	//Confirm record insertions
-	if (mysqli_query($conn, $insertGolfer)) {
-		echo "Inserted ". $strFirstName . " " . $strLastName . " into the roster.";
+	$result = mysqli_query($conn, $insertGolfer);
+	if ($result) {
+
+
+		// $golferID = $result->fetch_array(MYSQLI_ASSOC)['intGolferID'];
+
+		// $insertEventGolfer = "INSERT INTO TEventGolfers (intEventID, intGolferID) VALUES (1, $golferID)";
+		// if(mysqli_query($conn, $insertEventGolfer)){
+			echo "Inserted ". $strFirstName . " " . $strLastName . " into the roster.";
+
+		// }else{
+		// 	echo "Error: " . $insertEventGolfer . "<br>" . mysqli_error($conn);
+		// }
 	} else {
 		echo "Error: " . $insertGolfer . "<br>" . mysqli_error($conn);
 	}

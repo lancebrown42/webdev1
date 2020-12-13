@@ -8,18 +8,19 @@
         Abstract: Homework 12
         Date: 10/20/20
         -->
+        <link rel="stylesheet" type="text/css" href="../../../../css/bulma/css/bulma.css">
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
+        <?php require "navbar.php"; ?>
+        <div class="container">
 <?php
             ini_set('display_errors', 1);
             ini_set('display_startup_errors', 1);
             error_reporting(E_ALL);
             //Connect to MySQL
-            $servername = "mc-itddb-12-e-1";
-            $username = "lbrown11";
-            $password = "0671312";
-            $dbname = "WAPP1BrownL";
+            require "server.php";
 
             // Create connection
             $conn = new mysqli($servername, $username, $password, $dbname);
@@ -35,8 +36,10 @@
             $states = $conn->query("SELECT intStateID, strState FROM TStates");
             $genders = $conn->query("SELECT intGenderID, strGenderDesc FROM TGenders");
             $shirtsize = $conn->query("SELECT intShirtSizeID, strShirtSizeDesc FROM TShirtSizes");
+            $teams = $conn->query("SELECT TT.strTypeOfTeamDesc, TTC.intTeamandClubID, TG.strGenderDesc, TLT.strLeveldesc FROM TTypeofTeams as TT JOIN TTeamandCLubs as TTC on TT.intTypeOfTeamID = TTC.intTypeOfTeamID JOIN TLevelofTeams as TLT on TTC.intLevelofTeamID = TLT.intLevelofTeamID JOIN TGenders as TG on TTC.intGenderID = TG.intGenderID");
             
         ?>
+        <div class="field">
         <form action="process_golfer.php" method="post">
             <table>
                 <tr>
@@ -123,6 +126,24 @@
                 </tr>
                 <tr>
                     <td>
+                        <label for="txtTeam">Team:</label>
+                    </td>
+                    <td>
+                        <select name="txtTeam" required>
+                            <option hidden disabled selected value> -- Select a Team -- </option>
+                            <?php
+                                while($rows = $teams->fetch_assoc()){
+                                    $team_name = $rows['strGenderDesc'] . " " . $rows['strLeveldesc'] . " " . $rows['strTypeOfTeamDesc'];
+                                    $team_key = $rows['intTeamandClubID'];
+                                    echo"<option value='$team_key'>$team_name</option>";
+                                }
+                                ?>
+                        </select>
+                    </td>
+                        
+                </tr>
+                <tr>
+                    <td>
                         <label for="txtGender">Gender:</label>
                     </td>
                     <td>
@@ -146,7 +167,10 @@
                 </tr>
             </table>
         </form>
+    </div>
         <a href="showgolfers.php"><button>Show Golfers</button></a>
         <?php $conn->close();?>
+
+</div>
             </body>
 </html>
