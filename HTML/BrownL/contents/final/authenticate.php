@@ -12,7 +12,8 @@
         if ($conn->connect_error) {
           die("Connection failed: " . $conn->connect_error);
         }
-        $result=$conn->query("SELECT * FROM TEventCoordinators WHERE strEmail='" . $_POST['txtEmail'] . "' AND strPassword = '" . $_POST['txtPassword']);
+        $result=$conn->query("SELECT * FROM TEventCoordinators WHERE strEmail='" . $_POST['txtEmail'] . "' AND strPassword = '" . $_POST['txtPassword'] . "'");
+
         if($result){
 
         if(mysqli_num_rows($result) > 0){

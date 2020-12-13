@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Admin</title>
+        <title>Corporate Sponsorship Management</title>
 
         <link rel="stylesheet" type="text/css" href="../../../../css/bulma/css/bulma.css">
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
@@ -26,20 +26,11 @@
         }
         // $conn = mysqli_connect($servername, $username, $password, $dbname);
         ?>
-        <div class="hero is-success">
-        <div class="container section">
-            <div>
-                
-            <article class="hero-body">
-                <p class="title"> Administration Page</p>
-            </article>
-            </div>
+        <div class="section has-text-centered">
+            <a href="viewcorporate.php" class="button is-info is-large is-hoverable">View Existing Sponsorships</a>
+            <a href="viewopencorporate.php" class="button is-info is-large is-hoverable">View Available Sponsorships</a>
+            <a href="addcorporate.php" class="button is-large is-info is-hoverable">Add Corporate Sponsorship</a>
         </div>
-        </div>
-    <div class="section has-text-centered">
-        <a href="showgolfers.php" class="button is-info is-large is-hoverable">Golfer Management</button></a>
-            <a href="CorporateSponsorMain.php" class="button is-large is-info is-hoverable">Corporate Sponsorship Management</a>
-    </div>
+        
     </body>
 </html>
-    
