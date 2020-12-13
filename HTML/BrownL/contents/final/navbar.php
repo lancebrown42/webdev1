@@ -10,11 +10,20 @@
             <a href="showgolfers.php" class="navbar-item is-hoverable">Show Golfers</button></a>
             <a href="donate.php" class="navbar-item is-hoverable">Donate Now</button></a>
             <a href="golferstats.php" class="navbar-item is-hoverable">Golfer Statistics</button></a>
-            <a href="teamstats.php" class="navbar-item is-hoverable">Team Statistics</button></a>
+            <a href="teamstats.php" class="navbar-item is-hoverable">Team Statistics</button></a>';
+            // if($_GET['A'] && $_GET['A'] == 1){
+            //     echo '<a href="?A=0" class="navbar-item is-hoverable is-danger">Logout</a>';
+            // }else{
+                echo '<a href="login.php" class="navbar-item is-hoverable is-success">Login</a>';
+            // }
+
+            echo'
+            <div class="navbar-end"/>
             <a role="button" class="navbar-burger navbar-end" aria-label="menu" aria-expanded="false">
   				<span aria-hidden="true"></span>
   				<span aria-hidden="true"></span>
  				<span aria-hidden="true"></span>
+
 			</a>
         	</div>
         </nav>' ?>

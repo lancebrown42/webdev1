@@ -39,6 +39,8 @@
             $genders = $conn->query("SELECT intGenderID, strGenderDesc FROM TGenders");
             $shirtsize = $conn->query("SELECT intShirtSizeID, strShirtSizeDesc FROM TShirtSizes");
             $recentSponsors = $conn->query("SELECT * from vRecentSponsors");
+            $topTeam = $conn->query("SELECT * from vTeamStats ORDER BY monDonations LIMIT 1")->fetch_assoc();
+            $topGolfer = $conn->query("SELECT * from vGolferStats ORDER BY monDonations LIMIT 1")->fetch_assoc();
         ?>
         <div class="hero is-dark has-text-left is-fullheight-with-navbar">
         	<div class = "hero-body">
@@ -46,22 +48,32 @@
 		            <h2 class="title">Event Info</h2>
 		            <h3 class="subtitle">Year: <?php echo $event['intEventYear']?></h3>
 		            <h4 class="subtitle">Total raised: $<?php echo $totalDonations?></h4>
-		            <h4 class="subtitle">Top Donations Team:</h4>
+		            <h4 class="subtitle">Top Earning Golfer: <?php echo $topGolfer['strFirstName'] . " " . $topGolfer['strLastName']?></h4>
+		            <h4 class="subtitle">Top Earning Team: <?php echo $topTeam['strGender'] . " " . $topTeam['strLevel'] . " " . $topTeam['strTeam']?></h4>
 		            <h4 class="subtitle">Total golfers: <?php echo $totalGolfers?></h4>
-		            <h4 class="subtitle">Latest Donors:
+		            <div class="level">
+		            <h4 class="subtitle level-item level-left">Latest Donors:
 		            </h4>
 		            <ul class = "content card is-pulled-left has-text-success-light has-background-grey-dark">
 		            	
 		            <?php 
 		            while($row = mysqli_fetch_array($recentSponsors)){
 
-		            	echo "<li class =''>" . $row['strSponsorFirst'] . " " . $row['strSponsorLast'] . ": $". $row['monDonation'] . " to " . $row['strGolferFirst'] . " " . $row['strGolferLast'] . "</li>";
+		            	echo "<li class ='level-item level-left'>" . $row['strSponsorFirst'] . " " . $row['strSponsorLast'] . ": $". $row['monDonation'] . " to " . $row['strGolferFirst'] . " " . $row['strGolferLast'] . "</li>";
 
 		            		
 		            }
 		            	?>
 		            </ul>
-	            	
+		            <div class="level-item level-right"><p> </p></div>
+		            <div class="level-item level-right"><p> </p></div>
+		            <div class="level-item level-right"><p> </p></div>
+		            <div class="level-item level-right"><p> </p></div>
+		            <div class="level-item level-right"><p> </p></div>
+		            <div class="level-item level-right"><p> </p></div>
+
+
+	            	</div>
         		</div>
         	</div>
         </div>

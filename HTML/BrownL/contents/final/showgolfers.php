@@ -8,6 +8,7 @@
 </head>
 <body>
         <?php require "navbar.php"; ?>
+        <div class="container">
 <?php
 	//Connect to MySQL
 	require "server.php";
@@ -25,7 +26,9 @@
 	$sql = "SELECT * FROM TGolfers JOIN TStates on TGolfers.intStateID = TStates.intStateID JOIN TGenders on TGolfers.intGenderID = TGenders.intGenderID JOIN TShirtSizes on TGolfers.intShirtSizeID = TShirtSizes.intShirtSizeID";
 	if($result = mysqli_query($conn, $sql)){
 		if(mysqli_num_rows($result) > 0){
-			echo "<table class='table'>";
+			echo"<div class='table-container'>";
+			echo "<table class='table is-striped'>";
+			echo "<thead>";
 				echo "<tr>";
 				echo "<th>Golfer</th>";
 				echo "<th>Team</th>";
@@ -40,6 +43,8 @@
 				echo "<th>Shirt Size</th>";
 				echo "<th>Gender</th>";
             echo "</tr>";
+            echo"</thead>";
+            echo"<tbody>";
         while($row = mysqli_fetch_array($result)){
         	$teamquery = $conn->query("SELECT strTeamandClubDesc, strGender, strLevel from vgetTeam where intGolferID =" . $row['intGolferID'])->fetch_assoc();
             echo "<tr class='content'>";
@@ -58,7 +63,9 @@
 				echo "<td><a href='updateplayer.php?ID=" . $row['intGolferID']  . "'><button>Edit</button></a></td>";
             echo "</tr>";
         }
+        echo"</tbody>";
         echo "</table>";
+        echo"</div>";
 		
         // Free result set
         mysqli_free_result($result);
@@ -70,6 +77,7 @@
 }
     ?>
     <a href="Final.php"><button>Go Back</button></a>
+</div>
 </body>
 </html>
 
